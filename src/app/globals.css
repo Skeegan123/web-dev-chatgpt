@@ -1,27 +1,73 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body{
+  margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+main{
+  display: flex;
+  flex-direction: row;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+#chat_history{
+  background-color: black;
+  width: 25%;
+  height: 100vh;
+  padding: 0;
+  color: white
+}
+
+#chat_area{
+  background-color: #303139;
+  color: white;
+  width: 75%;
+  height: 100vh;
+  padding: 0px 200px 0px 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#message{
+  padding: 20px 0 20px 0;
+}
+
+
+#input{
+  width: 100%;
+  height: 40px;
+  outline: 1px solid rgb(93, 95, 106);
+  border-radius: 10px;
+  padding: 5px;
+  margin: 35px 0 35px 0;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#input>input{
+  width: 80%;
+  height: 80%;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: large;
+}
+
+#input>input:focus{
+  outline: none;
+}
+
+#input>button{
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  font: inherit;
+  font-size: x-large;
+  text-decoration: none;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
 }
