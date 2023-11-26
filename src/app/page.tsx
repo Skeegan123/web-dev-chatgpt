@@ -1,15 +1,10 @@
 import Image from 'next/image'
 import ChatArea from './ChatArea'
-import ChatHistory from './ChatHistory'
+// import ChatHistory from './ChatHistory'
 
 
 export default function Home() {
-  const messages=[
-    {"role": "system", "content": "You are a helpful assistant."},
-    {"role": "user", "content": "Who won the world series in 2020?"},
-    {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
-    {"role": "user", "content": "Where was it played?"}
-  ]
+  const messages: { role: string; content: string; }[] = []
 
 
   return (
