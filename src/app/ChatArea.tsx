@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { sendMessageAction } from './actions/sendMessageAction';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { createNewThreadAction } from './actions/createNewThreadAction';
+import MessageDisplay from './components/MessageDisplay';
 
 interface Message {
   role: string;
@@ -51,11 +52,14 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages: initialMessages }) => {
 
   return (
     <div id="chat_area">
-      <div>
+      <div className="messages">
         {localMessages.map((message: any, index) => (
-          <div key={index} id='message'>
-            <strong>{message.role}:</strong> {message.content || message.content[0].text.value}
-          </div>
+          <MessageDisplay key={index} message={message} />
+          // eslint-disable-next-line react/jsx-key
+          // <div>
+          //   <strong>{message.role}:</strong>
+          //   <div className="message-content">{message.content}</div>
+          // </div>
         ))}
       </div>
       <div id='input'>

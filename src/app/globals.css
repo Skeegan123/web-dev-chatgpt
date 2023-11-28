@@ -1,13 +1,13 @@
-body{
+body {
   margin: 0;
 }
 
-main{
+main {
   display: flex;
   flex-direction: row;
 }
 
-#chat_history{
+#chat_history {
   background-color: black;
   width: 25%;
   height: 100vh;
@@ -15,7 +15,7 @@ main{
   color: white
 }
 
-#chat_area{
+#chat_area {
   background-color: #303139;
   color: white;
   width: 75%;
@@ -27,12 +27,15 @@ main{
   overflow-y: scroll;
 }
 
-#message{
+#message {
   padding: 20px 0 20px 0;
 }
 
+.messages {
+  margin-top: 50px;
+}
 
-#input{
+#input {
   width: 100%;
   height: 40px;
   outline: 1px solid rgb(93, 95, 106);
@@ -46,7 +49,7 @@ main{
   justify-content: space-between;
 }
 
-#input>input{
+#input>input {
   width: 80%;
   height: 80%;
   background-color: transparent;
@@ -55,11 +58,11 @@ main{
   font-size: large;
 }
 
-#input>input:focus{
+#input>input:focus {
   outline: none;
 }
 
-#input>button{
+#input>button {
   margin: 0;
   padding: 0;
   border: none;
@@ -71,4 +74,53 @@ main{
   cursor: pointer;
   width: 35px;
   height: 35px;
+}
+
+.message-container {
+  display: flex;
+  align-items: flex-start;
+  margin: 20px;
+
+}
+
+.avatar {
+  width: 27px;
+  height: 27px;
+  margin-right: 10px;
+  /* Ensure the image doesn't bleed outside the border-radius */
+}
+
+.message-content {
+  /* background-color: #fff; */
+  /* Adjust the background color as needed */
+  border-bottom: 1px solid gray;
+  /* Add a subtle border */
+  margin-left: 10px;
+  /* Adjust as needed to not overlap the avatar */
+  position: relative;
+  /* For the copy button positioning */
+  width: calc(100% - 50px);
+  /* Adjust width to ensure it doesn't overlap with the avatar */
+}
+
+.code-header {
+  background-color: black;
+  margin-bottom: -6.5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+button.copy-button {
+  font-size: .6em;
+  height: 20px;
+  background: #007acc;
+  /* Button background color */
+  color: white;
+  /* Button text color */
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
 }
