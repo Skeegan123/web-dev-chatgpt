@@ -1,4 +1,4 @@
-class Thread {
+export class Thread {
     id: string;
     user_id: number;
     thread_id: string;

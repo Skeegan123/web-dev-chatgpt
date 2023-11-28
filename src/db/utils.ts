@@ -101,19 +101,22 @@ const saveThread = async (username: string, threadId: string): Promise<Thread> =
     }
 };
 
-const getAllThreadsByUsername = async (username: string) => {
+export const getAllThreadsByUsername = async (username: string) => {
     const userQuery = 'SELECT id FROM users WHERE username = ?';
     const threadsQuery = 'SELECT * FROM threads WHERE user_id = ?';
-
+    console.log("before promise");
     return new Promise((resolve, reject) => {
-        db.query(userQuery, [username], (error, userResults) => {
+        db.query(userQuery, username, (error, userResults) => {
+            console.log("before error");
             if (error) {
+                console.log("in error");
                 return reject(error);
             }
             if (userResults.length === 0) {
+                console.log("length = 0");
                 return reject(new Error('User not found'));
             }
-
+            console.log(userResults);
             const userId = userResults[0].id;
             db.query(threadsQuery, [userId], (error, threadsResults) => {
                 if (error) {

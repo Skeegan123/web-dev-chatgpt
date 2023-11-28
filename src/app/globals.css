@@ -24,7 +24,6 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow-y: scroll;
 }
 
 #message {
@@ -33,10 +32,12 @@ main {
 
 .messages {
   margin-top: 50px;
+  overflow-y: scroll;
+  margin-bottom: 15%;
 }
 
 #input {
-  width: 100%;
+  width: 47%;
   height: 40px;
   outline: 1px solid rgb(93, 95, 106);
   border-radius: 10px;
@@ -47,6 +48,9 @@ main {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 36.5%;
 }
 
 #input>input {
