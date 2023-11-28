@@ -101,22 +101,18 @@ const saveThread = async (username: string, threadId: string): Promise<Thread> =
     }
 };
 
-export const getAllThreadsByUsername = async (username: string) => {
+export const getAllThreadsByUsername = async (username: string): Promise<Thread[]> => {
     const userQuery = 'SELECT id FROM users WHERE username = ?';
     const threadsQuery = 'SELECT * FROM threads WHERE user_id = ?';
-    console.log("before promise");
+
     return new Promise((resolve, reject) => {
         db.query(userQuery, username, (error, userResults) => {
-            console.log("before error");
             if (error) {
-                console.log("in error");
                 return reject(error);
             }
             if (userResults.length === 0) {
-                console.log("length = 0");
                 return reject(new Error('User not found'));
             }
-            console.log(userResults);
             const userId = userResults[0].id;
             db.query(threadsQuery, [userId], (error, threadsResults) => {
                 if (error) {
@@ -130,9 +126,27 @@ export const getAllThreadsByUsername = async (username: string) => {
     });
 };
 
+export const getAllThreads = async (): Promise<Thread[]> => {
+    const query = 'SELECT * FROM threads';
+
+    return new Promise((resolve, reject) => {
+        db.query(query, (error, results) => {
+            if (error) {
+                return reject(error);
+            }
+            const threads = results.map((row: Thread) => new Thread(row.id, row.user_id, row.thread_id, row.created_at));
+            return resolve(threads);
+        });
+    });
+}
+
+
+
+
 module.exports = {
     saveThread,
     createThread,
     getAllThreadsByUsername,
-    createUser
+    createUser,
+    getAllThreads
 };

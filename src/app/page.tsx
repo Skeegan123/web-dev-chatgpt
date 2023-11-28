@@ -1,4 +1,5 @@
-import Image from 'next/image'
+'use client';
+
 import ChatArea from './ChatArea'
 import ThreadHistory from './ThreadHistory';
 // import ChatHistory from './ChatHistory'
@@ -10,7 +11,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div id="chat_history"><ThreadHistory username={"guest"}></ThreadHistory></div>
+      <div id="chat_history"><ThreadHistory username={"Guest"}></ThreadHistory></div>
       <ChatArea messages={messages}></ChatArea>
     </main>
   )

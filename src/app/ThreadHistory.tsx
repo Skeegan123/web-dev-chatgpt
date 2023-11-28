@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { getAllThreadsByUsername } from '../db/utils';
-import { Thread } from '../db/models/Thread';
+import { getAllThreadsAction } from './actions/getAllThreads';
+const Thread = require('../db/models/Thread');
 
 interface ThreadHistoryProps {
   username: string;
@@ -12,20 +12,13 @@ const ThreadHistory: React.FC<ThreadHistoryProps> = ({ username }) => {
   const [threads, setThreads] = useState<Thread[]>([]);
 
   useEffect(() => {
-    const fetchThreads = async () => {
-      try {
-        const threadsResult = await getAllThreadsByUsername(username);
-        console.log(threadsResult);
-        setThreads(threadsResult as Thread[]);
-      } catch (error) {
-        console.error('Error fetching threads:', error);
-        // Handle error appropriately (e.g., show a message to the user)
-      }
+    const getThreads = async () => {
+      const threads = await getAllThreadsAction(username);
+      setThreads(threads);
     };
 
-    fetchThreads();
-    console.log(threads);
-  }, [username]);
+    getThreads();
+  }, []);
 
   return (
     <div>
