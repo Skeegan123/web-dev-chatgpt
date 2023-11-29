@@ -5,35 +5,78 @@ const Thread = require('./models/Thread');
 
 export const getDb = () => db;
 
-const createUser = async (username: string): Promise<User> => {
-    const query = 'INSERT INTO users (username) VALUES (?)';
-
-    return new Promise((resolve, reject) => {
-        db.query(query, [username], (error, results) => {
-            if (error) {
-                return reject(error);
-            }
-            return resolve(new User(results.insertId, username, new Date()));
-        });
-    });
-};
-
-const findOrCreateUser = async (username: string): Promise<User> => {
-    try {
-        const query = 'SELECT * FROM users WHERE username = ? LIMIT 1';
+const createUser = async (username: string, password?: string): Promise<User> => {
+    if (password) {
+        const query = 'INSERT INTO users (username, password) VALUES (?, ?)';
 
         return new Promise((resolve, reject) => {
-            db.query(query, [username], async (error, results) => {
+            db.query(query, [username, password], (error, results) => {
                 if (error) {
                     return reject(error);
                 }
-                if (results.length === 0) {
-                    const user: User = await createUser(username);
-                    return resolve(user);
-                }
-                return resolve(new User(results[0].id, results[0].username, results[0].created_at));
+                return resolve(new User(results.insertId, username, new Date(), password));
             });
         });
+    } else {
+        const query = 'INSERT INTO users (username) VALUES (?)';
+
+        return new Promise((resolve, reject) => {
+            db.query(query, [username], (error, results) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(new User(results.insertId, username, new Date()));
+            });
+        });
+    }
+};
+
+export const findOrCreateUser = async (username: string, password?: string): Promise<User> => {
+    try {
+        let query: string;
+        if (password) {
+            query = 'SELECT * FROM users WHERE username = ? AND password = ? LIMIT 1';
+
+            return new Promise((resolve, reject) => {
+                // First, check if the username exists
+                const query = 'SELECT * FROM users WHERE username = ? LIMIT 1';
+                db.query(query, [username], async (error, results) => {
+                    if (error) {
+                        return reject(error);
+                    }
+                    if (results.length === 0) {
+                        // If the username does not exist, create a new user
+                        const user: User = await createUser(username, password);
+                        return resolve(user);
+                    } else {
+                        // If the username exists, check if the password matches
+                        const user = results[0];
+                        if (user.password === password) {
+                            // If the password matches, resolve the promise with the user
+                            return resolve(new User(user.id, user.username, user.created_at, user.password));
+                        } else {
+                            // If the password does not match, reject the promise with an error
+                            return reject(new Error('Invalid password'));
+                        }
+                    }
+                });
+            });
+        } else {
+            query = 'SELECT * FROM users WHERE username = ? LIMIT 1';
+
+            return new Promise((resolve, reject) => {
+                db.query(query, [username], async (error, results) => {
+                    if (error) {
+                        return reject(error);
+                    }
+                    if (results.length === 0) {
+                        const user: User = await createUser(username);
+                        return resolve(user);
+                    }
+                    return resolve(new User(results[0].id, results[0].username, results[0].created_at));
+                });
+            });
+        }
     } catch (error) {
         console.error('Error in findOrCreateUser:', error);
         throw error;
@@ -144,6 +187,7 @@ export const getAllThreads = async (): Promise<Thread[]> => {
 
 
 module.exports = {
+    findOrCreateUser,
     saveThread,
     createThread,
     getAllThreadsByUsername,

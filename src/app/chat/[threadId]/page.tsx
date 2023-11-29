@@ -5,21 +5,31 @@ import ChatArea from '../../ChatArea'
 import { useEffect, useRef, useState } from 'react';
 import { fetchChatHistory } from '@/app/actions/fetchChatHistory';
 import { sendMessageAction } from '@/app/actions/sendMessageAction';
-import { createNewThreadAction } from '@/app/actions/createNewThreadAction';
-import router from 'next/router';
-// import ChatHistory from './ChatHistory'
+import ThreadHistory from '@/app/ThreadHistory';
 
 
 export default function Chat() {
     const query = usePathname();
     const threadId = query.split('/')[2];
     const [messages, setMessages] = useState<{ "role": string, "content": string }[]>([]);
+    const [username, setUsername] = useState<string>('');
     let loaded = useRef(false);
+
+    const onLogout = () => {
+        localStorage.removeItem('username'); // Remove username from localStorage
+        // Navigate to the home page
+        window.location.href = '/';
+    }
+
+    useEffect(() => {
+        const username = localStorage.getItem('username');
+        if (username) {
+            setUsername(username);
+        }
+    }, []);
 
     useEffect(() => {
         async function fetchHistoryAndRespond() {
-            if (loaded.current) { return; }
-            loaded.current = true;
             try {
                 const fetchedMessages = await fetchChatHistory(threadId);
                 const tempMessages = fetchedMessages.map((msg: any) => ({
@@ -35,7 +45,7 @@ export default function Chat() {
                 if (tempMessages.length > 0 && tempMessages[tempMessages.length - 1].role === 'user') {
                     const result = await sendMessageAction(
                         tempMessages[tempMessages.length - 1].content,
-                        'Guest',
+                        username,
                         threadId,
                         true
                     );
@@ -52,14 +62,14 @@ export default function Chat() {
         if (threadId) {
             fetchHistoryAndRespond();
         }
-    }, []);
+    }, [username, threadId]);
 
 
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div id="chat_history"></div>
-            <ChatArea messages={messages}></ChatArea>
+            <div id="chat_history"><ThreadHistory username={username} onLogout={onLogout} ></ThreadHistory></div>
+            <ChatArea user={username} messages={messages}></ChatArea>
         </main>
     )
 }

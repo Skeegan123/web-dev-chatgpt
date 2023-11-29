@@ -3,9 +3,9 @@
 import { getAllThreadsByUsername, getAllThreads } from "@/db/utils";
 const Thread = require('@/db/models/Thread');
 
-async function getAllThreadsAction(username?: string) {
+async function getAllThreadsAction(username: string) {
     try {
-        const threads: Thread[] = username ? await getAllThreadsByUsername(username) : await getAllThreads();
+        const threads: Thread[] = username ? await getAllThreadsByUsername(username) : new Array<Thread>();
 
         // convert Thread objects to plain objects
         const plainThreads = threads.map((thread: Thread) => {

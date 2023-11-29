@@ -24,6 +24,7 @@ const MessageDisplay: React.FC<{ message: IMessage }> = ({ message }) => {
                 return (
                     <div key={index} className="code-block">
                         <div className="code-header">
+                            <span className="language-label">{language}</span>
                             <button className="copy-button" onClick={() => navigator.clipboard.writeText(code.trim())}>Copy</button>
                         </div>
                         <SyntaxHighlighter language={language} style={vscDarkPlus}>

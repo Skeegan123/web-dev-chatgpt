@@ -1,7 +1,6 @@
 'use server';
 
 import { createThread } from "@/db/utils";
-import OpenAI from "openai";
 
 export async function createNewThreadAction(username: string, newMessage?: string): Promise<string> {
     try {
