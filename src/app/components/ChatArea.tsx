@@ -47,6 +47,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ user, messages: initialMessages, in
     try {
       const chatMessage = newMessage;
       setNewMessage(''); // Clear the input field
+      resetTextAreaHeight(); // Reset the text area height
       let currentThreadId: any = threadId;
 
       // Add the user's message immediately to the local state
@@ -86,6 +87,12 @@ const ChatArea: React.FC<ChatAreaProps> = ({ user, messages: initialMessages, in
     textArea.style.height = 'auto'; // Reset height to calculate new scroll height
     textArea.style.height = Math.min(textArea.scrollHeight, maxHeight) + 'px';
   };
+
+  // Function to reset text area height after sending a message
+  const resetTextAreaHeight = () => {
+    const textArea: any = textAreaRef.current;
+    textArea.style.height = 'auto';
+  }
 
   return (
     <div id="chat_area">

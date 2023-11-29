@@ -23,7 +23,7 @@ const LoginModal = ({ onLogin, onGuest }: any) => {
                     }
 
                 }} />
-            <button onClick={() => onLogin(username, password)}>Login</button>
+            <button onClick={() => onLogin(username, password)}>Login/Sign Up</button>
             <button onClick={onGuest}>Guest</button>
         </div>
     );

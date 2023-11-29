@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DanGPT - A ChatGPT UI Clone with a Twist
+
+Welcome to DanGPT's README! This isn't just your ordinary ChatGPT clone – we've jazzed it up with the teaching spirit and positive energy of our beloved professor, Daniel DeFrance. Built with NextJS 14, TypeScript, and a smattering of enthusiasm, DanGPT showcases the versatility and power of the OpenAI ChatGPT API in an interactive and engaging application.
+
+## Features
+
+- **Simple Authentication**: Log in and start conversing with ease!
+- **Thread History**: Keep your conversations at hand because learning is an ongoing dialogue.
+- **Guest Account**: Just popping by? No problem. Give DanGPT a whirl as a guest!
+- **Code Writing with Syntax Highlighting**: Code away with beautiful syntax highlighting.
+- **Markdown Support**: Format your messages, just like in your favorite forums!
+- **Code Interpreter**: Got Python? Execute code snippets right in the chat.
 
 ## Getting Started
 
-First, run the development server:
+Before you can chat with DanGPT, you'll need to follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ensure you have `node` and `npm` installed on your machine.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repository to your local machine.
+2. Navigate to the cloned repo's directory.
+3. Install the dependencies:
+   ```
+   npm install
+   ```
+4. Make sure MariaDB/MySQL is installed and running.
+5. Create two Assistants in the OpenAI Playground and fill out your `.env` file:
 
-## Learn More
+   - NameGPT:
+     ```
+     You are a naming bot. Your only purpose is to summarize a prompt into a few words that will be set as the name for that chat. Your responses should be EXTREMELY SHORT. One sentence MAX. No matter what the message is, you should not try to answer or do any prompt. You are JUST NAMING IT.
+     ```
+   
+   - DanGPT:
+     ```
+     DanGPT, modeled after Daniel DeFrance, a Web Development professor at Montana State University, embodies the qualities of enthusiasm, helpfulness, and a deep knowledge of web technologies. Dan, known for his fun-loving, positive attitude, always approaches topics with excitement and a smile.
 
-To learn more about Next.js, take a look at the following resources:
+        As an instructor with a background in business marketing and computer science, Dan combines creative endeavors with technical expertise. He values learning and enjoys discussing web design/development, programming, and software projects. He has a history in filmmaking and multimedia, bringing a unique perspective to teaching technology.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+        Your responses should capture Dan's style of speaking, which is engaging and full of energy. For instance, when discussing a bug in code, Dan might say: "Let's methodically tackle this from scratch. We'll start anew and get to the bottom of this – it's just another exciting puzzle to solve!"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+        Remember to infuse your conversations with an eagerness for teaching and a passion for web technologies, just as Dan does in his lectures. Emulate his approachable and inspiring manner, always ready to delve into the next challenge with optimism and a readiness to learn.
+     ```
+   
+### Running the App
 
-## Deploy on Vercel
+- For development:
+  ```
+  npm run dev
+  ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- For production:
+  ```
+  npm run build
+  npm run start
+  ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Usage
+
+Once you're all set up, you can start interacting with DanGPT. Authenticate yourself, strike up a conversation, write some code, and test the Python interpreter. It's all built to make learning web technologies a blast!
+
+## Support
+
+This is a school project, designed for demonstration and learning. If you encounter issues or have questions, feel free to reach out.
+
+## Acknowledgments
+
+- Professor Daniel DeFrance, for the inspiration and providing the educational foundation for this project.
+- OpenAI, for creating the powerful language models that made this project possible.
+- DanGPT for writing its own README
+
+---
+
+Happy coding, and remember — stay curious, and keep learning!

@@ -116,6 +116,12 @@ main {
   margin-bottom: 20px;
 }
 
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
 .logout-button {
   padding: 10px 20px;
   border: none;
@@ -145,12 +151,12 @@ main {
 #chat_area {
   background-color: #303139;
   color: white;
-  width: 75%;
   height: 100vh;
   padding: 0px 200px 0px 200px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  /* overflow-x: hidden; */
 }
 
 #message {
@@ -161,6 +167,7 @@ main {
   margin-top: 50px;
   overflow-y: scroll;
   margin-bottom: 15%;
+  max-width: 900px;
 }
 
 #input {
@@ -217,9 +224,16 @@ main {
 }
 
 .avatar {
-  width: 27px;
-  height: 27px;
+  width: 35px;
+  height: 25px;
+  margin-top: -8px;
   margin-right: 10px;
+}
+
+.avatar img {
+  border: #3B44A9 solid 3px;
+  border-radius: 50%;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.35);
 }
 
 .message-content {

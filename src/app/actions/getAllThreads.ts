@@ -17,6 +17,11 @@ async function getAllThreadsAction(username: string) {
                 name: thread.name
             };
         });
+
+        plainThreads.sort((a, b) => {
+            return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        });
+
         return plainThreads;
     } catch (error) {
         console.error('Error in createNewThreadAction:', error);

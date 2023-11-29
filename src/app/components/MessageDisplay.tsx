@@ -59,7 +59,7 @@ const MessageDisplay: React.FC<{ message: IMessage, user?: string }> = ({ messag
     return (
         <div className="message-container">
             <div className="avatar">
-                <Image src={avatarSrc} alt="Profile" width={25} height={25} />
+                <img src={avatarSrc} alt="Profile" width={35} height={35} />
             </div>
             <div className="message-content">
                 <strong>{message.role === "assistant" ? "DanGPT" : user || "User"}:</strong>

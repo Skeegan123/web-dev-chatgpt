@@ -43,6 +43,9 @@ export default function Chat() {
 
                 // Send a response if the last message was from the user
                 if (tempMessages.length > 0 && tempMessages[tempMessages.length - 1].role === 'user') {
+                    const loadingMessage = { role: 'assistant', content: '...', isLoading: true };
+                    setMessages(prev => [...prev, loadingMessage]);
+
                     const result = await sendMessageAction(
                         tempMessages[tempMessages.length - 1].content,
                         username,
@@ -51,7 +54,12 @@ export default function Chat() {
                     );
 
                     if (result.response) {
-                        setMessages(prev => [...prev, { role: 'assistant', content: result.response }]);
+                        // Remove the loading message
+                        setMessages(prev => prev.slice(0, prev.length - 1));
+
+                        // Add the assistant's response
+                        const assistantMessage = { role: 'assistant', content: result.response };
+                        setMessages(prev => [...prev, assistantMessage]);
                     }
                 }
             } catch (error) {

@@ -52,10 +52,6 @@ const ThreadHistory: React.FC<ThreadHistoryProps> = ({ username, onLogout }) => 
     setShowProfileModal(false);
     const getThreads = async () => {
       const threads = await getAllThreadsAction(username);
-      // Sort threads by created date in reverse order
-      threads.sort((a, b) => {
-        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
-      });
       setThreads(threads);
     };
 
