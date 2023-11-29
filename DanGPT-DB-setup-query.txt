@@ -1,0 +1,17 @@
+CREATE DATABASE web_design_chatgpt;
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  password VARCHAR(255) DEFAULT ''
+);
+
+CREATE TABLE threads (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,  -- If using auth, otherwise remove this column
+  thread_id VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  name VARCHAR(255) DEFAULT '',
+  FOREIGN KEY (user_id) REFERENCES users(id)  -- If using auth
+);
