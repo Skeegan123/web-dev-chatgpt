@@ -1,34 +1,34 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import ChatArea from '../../ChatArea'
 import { useEffect, useRef, useState } from 'react';
+import ChatArea from '../../components/ChatArea';
+import ThreadHistory from '@/app/components/ThreadHistory';
 import { fetchChatHistory } from '@/app/actions/fetchChatHistory';
 import { sendMessageAction } from '@/app/actions/sendMessageAction';
-import ThreadHistory from '@/app/ThreadHistory';
-
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function Chat() {
+    const router = useRouter();
     const query = usePathname();
     const threadId = query.split('/')[2];
-    const [messages, setMessages] = useState<{ "role": string, "content": string }[]>([]);
-    const [username, setUsername] = useState<string>('');
-    let loaded = useRef(false);
+    const [messages, setMessages] = useState<{ role: string, content: string }[]>([]);
+    const [username, setUsername] = useState('');
 
+    // Function to handle logging out
     const onLogout = () => {
-        localStorage.removeItem('username'); // Remove username from localStorage
-        // Navigate to the home page
-        window.location.href = '/';
+        localStorage.removeItem('username');
+        router.push('/');
     }
 
     useEffect(() => {
-        const username = localStorage.getItem('username');
-        if (username) {
-            setUsername(username);
+        const storedUsername = localStorage.getItem('username');
+        if (storedUsername) {
+            setUsername(storedUsername);
         }
     }, []);
 
     useEffect(() => {
+        // Function to fetch chat history and respond if needed
         async function fetchHistoryAndRespond() {
             try {
                 const fetchedMessages = await fetchChatHistory(threadId);
@@ -64,12 +64,10 @@ export default function Chat() {
         }
     }, [username, threadId]);
 
-
-
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div id="chat_history"><ThreadHistory username={username} onLogout={onLogout} ></ThreadHistory></div>
-            <ChatArea user={username} messages={messages}></ChatArea>
+            <ThreadHistory username={username} onLogout={onLogout} />
+            <ChatArea user={username} messages={messages} />
         </main>
-    )
+    );
 }

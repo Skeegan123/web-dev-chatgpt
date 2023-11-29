@@ -1,7 +1,6 @@
 import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark, vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { irBlack } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import Image from 'next/image';
@@ -9,10 +8,22 @@ import Image from 'next/image';
 interface IMessage {
     role: string;
     content: string;
+    isLoading?: boolean; // Optional prop to indicate loading state
 }
 
-const MessageDisplay: React.FC<{ message: IMessage }> = ({ message }) => {
+const MessageDisplay: React.FC<{ message: IMessage, user?: string }> = ({ message, user }) => {
     const renderContent = () => {
+        // If the message is loading, return a loading indicator
+        if (message.isLoading) {
+            return (
+                <div className="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            );
+        }
+
         // Split the message content by code block delimiters (```)
         const parts = message.content.split(/(```\w*\n[\s\S]*?\n```)/g);
 
@@ -51,7 +62,7 @@ const MessageDisplay: React.FC<{ message: IMessage }> = ({ message }) => {
                 <Image src={avatarSrc} alt="Profile" width={25} height={25} />
             </div>
             <div className="message-content">
-                <strong>{message.role === "assistant" ? "DanGPT" : "User"}:</strong>
+                <strong>{message.role === "assistant" ? "DanGPT" : user || "User"}:</strong>
                 <div>{renderContent()}</div>
             </div>
         </div>

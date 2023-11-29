@@ -1,40 +1,18 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import ChatArea from './ChatArea'
-import ThreadHistory from './ThreadHistory';
+import { useRouter } from 'next/navigation';
+import ChatArea from './components/ChatArea';
+import ThreadHistory from './components/ThreadHistory';
 import LoginModal from './components/LoginModal';
 import { findOrCreateUserAction } from './actions/findOrCreateUserAction';
 
-
 export default function Home() {
-  const messages: { role: string; content: string; }[] = []
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState('Guest');
   const [showModal, setShowModal] = useState(true);
+  const router = useRouter();
 
-  const handleLogin = async (username: string, password: string) => {
-    const user = await findOrCreateUserAction(username, password);
-
-    if (user) {
-      localStorage.setItem('username', username); // Save username to localStorage
-      setUser(username);
-      setShowModal(false);
-    }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('username'); // Remove username from localStorage
-    setUser('');
-    // Navigate to the home page
-    window.location.href = '/';
-  };
-
-  const handleGuest = () => {
-    localStorage.setItem('username', 'Guest');
-    setUser('Guest');
-    setShowModal(false);
-  };
-
+  // useEffect hook to check if the user is logged in and if so, set the username
   useEffect(() => {
     const username = localStorage.getItem('username');
     if (username) {
@@ -43,23 +21,47 @@ export default function Home() {
     }
   }, [user]);
 
-  // Show the modal only on the first page load
+  // useEffect hook to check if the user is logged in and if not, show the login modal
   useEffect(() => {
     if (!user) {
       setShowModal(true);
     }
   }, [user]);
 
+  // Function to handle logging in
+  const handleLogin = async (username: string, password: string) => {
+    const user = await findOrCreateUserAction(username, password);
+
+    if (user) {
+      localStorage.setItem('username', username);
+      setUser(username);
+      setShowModal(false);
+    }
+  }
+
+  // Function to handle logging in as a guest
+  const handleGuest = () => {
+    handleLogin('Guest', '');
+    setShowModal(false);
+  }
+
+  // Function to handle logging out
+  const handleLogout = () => {
+    localStorage.removeItem('username');
+    setUser('');
+    router.push('/');
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {showModal && (
         <div className="modal-overlay">
-          <LoginModal onLogin={handleLogin} onGuest={handleGuest} />
+          <LoginModal onLogin={(username: string, password: string) => handleLogin(username, password)}
+            onGuest={() => handleGuest()} />
         </div>
       )}
-
-      <div id="chat_history"><ThreadHistory username={user} onLogout={handleLogout} ></ThreadHistory></div>
-      <ChatArea user={user} messages={messages}></ChatArea>
+      <ThreadHistory username={user} onLogout={() => handleLogout()} />
+      <ChatArea user={user} info messages={[]} />
     </main>
   )
 }

@@ -13,7 +13,8 @@ async function getAllThreadsAction(username: string) {
                 id: thread.id,
                 user_id: thread.user_id,
                 thread_id: thread.thread_id,
-                created_at: thread.created_at
+                created_at: thread.created_at,
+                name: thread.name
             };
         });
         return plainThreads;

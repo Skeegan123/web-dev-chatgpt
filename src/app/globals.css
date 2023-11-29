@@ -13,7 +13,7 @@ main {
 
 #chat_history {
   background-color: black;
-  width: 500px;
+  width: 385px;
   height: 100vh;
   padding: 20px;
   color: white;
@@ -21,21 +21,41 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
-  padding-bottom: 70px;
-  /* Aligns the thread history to the top and profile section to the bottom */
+}
+
+.threads-list {
+  width: 345px;
+  height: 82.5%;
+  overflow-y: scroll;
+  border-top: rgb(93, 95, 106) solid 1px;
+  border-bottom: rgb(93, 95, 106) solid 1px;
+}
+
+.new-chat-button {
+  width: 323px;
+  height: 40px;
+  border: #303339 solid 1px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: black;
+  cursor: pointer;
+}
+
+.new-chat {
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.new-chat-button:hover {
+  background: #202225;
 }
 
 .profile-section {
-  position: fixed;
-  /* Fixed position to stick to the bottom */
-  bottom: 0;
-  /* Align to the bottom of the viewport */
-  left: 0;
-  /* Align to the left side of the parent container */
-  width: 340px;
-  /* Same width as the chat_history to maintain alignment */
-  margin: 10px;
+  width: 323px;
   border: #303339 solid 1px;
   border-radius: 15px;
   display: flex;
@@ -43,20 +63,15 @@ main {
   justify-content: left;
   padding: 10px;
   background: black;
-  /* Dark background similar to the image */
   cursor: pointer;
-  /* Indicates the section is clickable */
 }
 
 .profile-section:hover {
   background: #202225;
-  /* Darker background on hover */
 }
 
 .profile-pic {
   border-radius: 50%;
-  /* object-fit: cover; */
-  /* Ensures the image covers the area properly */
 }
 
 .profile-modal {
@@ -70,7 +85,6 @@ main {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  /* High z-index to ensure it's on top */
 }
 
 .profile-modal-content {
@@ -79,35 +93,27 @@ main {
   border-radius: 10px;
   text-align: center;
   width: 350px;
-  /* Updated width */
   position: relative;
-  /* For absolute positioning of the close button */
 }
 
 .modal-close-button {
   position: absolute;
   top: 10px;
-  /* Adjust as needed */
   right: 15px;
-  /* Adjust as needed */
   font-size: 1.5em;
-  /* Adjust as needed */
   cursor: pointer;
   color: white;
 }
 
 .modal-profile-pic {
   border-radius: 50%;
-  /* Makes the image round */
   margin-bottom: 20px;
-  /* Space between image and username */
 }
 
 .modal-username {
   color: white;
   font-size: 1.2em;
   margin-bottom: 20px;
-  /* Space between username and logout button */
 }
 
 .logout-button {
@@ -115,7 +121,6 @@ main {
   border: none;
   border-radius: 5px;
   background-color: #5865F2;
-  /* Example button color */
   color: white;
   font-size: 1em;
   cursor: pointer;
@@ -124,24 +129,17 @@ main {
 
 .logout-button:hover {
   background-color: #4752C4;
-  /* Darker shade on hover */
 }
 
 .logout-button:active {
   background-color: #3B44A9;
-  /* Even darker shade when clicked */
 }
 
 .username {
-  /* background-color: #303139; */
   color: white;
-  /* padding: 5px 15px;
-  border-radius: 20px; */
   font-size: 0.9em;
   display: inline-block;
-  /* Allows padding to affect layout */
   margin-left: 10px;
-  /* Space between picture and username */
 }
 
 #chat_area {
@@ -152,7 +150,7 @@ main {
   padding: 0px 200px 0px 200px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 #message {
@@ -169,7 +167,6 @@ main {
   width: 55%;
   height: auto;
   background-color: #303139;
-  /* Adjusted to 'auto' to accommodate varying heights of textarea */
   outline: 1px solid rgb(93, 95, 106);
   border-radius: 10px;
   padding: 5px;
@@ -181,21 +178,17 @@ main {
   justify-content: space-between;
   position: fixed;
   bottom: 0;
-  left: 32%;
+  left: 35%;
 }
 
 #input>textarea {
   width: 80%;
-  /* height: 80px; */
-  /* Initial height, can adjust as needed */
   background-color: transparent;
   border: none;
   color: white;
   font-size: large;
   resize: none;
-  /* Prevents the user from resizing the textarea */
   overflow-y: auto;
-  /* Allows scrolling inside the textarea */
 }
 
 #input>textarea:focus {
@@ -227,20 +220,12 @@ main {
   width: 27px;
   height: 27px;
   margin-right: 10px;
-  /* Ensure the image doesn't bleed outside the border-radius */
 }
 
 .message-content {
-  /* background-color: #fff; */
-  /* Adjust the background color as needed */
-  /* border-bottom: 1px solid gray; */
-  /* Add a subtle border */
   margin-left: 10px;
-  /* Adjust as needed to not overlap the avatar */
   position: relative;
-  /* For the copy button positioning */
   width: calc(100% - 50px);
-  /* Adjust width to ensure it doesn't overlap with the avatar */
 }
 
 .code-header {
@@ -271,9 +256,7 @@ button.copy-button {
   font-size: .6em;
   height: 20px;
   background: #007acc;
-  /* Button background color */
   color: white;
-  /* Button text color */
   border: none;
   border-radius: 3px;
   padding: 5px 10px;
@@ -289,44 +272,31 @@ button.copy-button {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  /* Dark overlay */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  /* Ensure it's above other content */
 }
 
-/* Modal styles */
 .login-modal {
   background-color: #202225;
-  /* Dark grey background */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  /* Soft shadow for depth */
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  /* Aligns children width to stretch */
   width: 300px;
-  /* Fixed width, you can adjust as needed */
   z-index: 1001;
-  /* Above the overlay */
 }
 
-/* Input styles */
 .login-modal input {
   background-color: #303339;
-  /* Slightly lighter grey for input fields */
   border: 1px solid #444;
-  /* Border to define edges */
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
-  /* Space between input fields */
   color: white;
-  /* Text color */
   font-size: 16px;
 }
 
@@ -341,23 +311,19 @@ button.copy-button {
   font-size: 16px;
   color: white;
   background-color: #5865F2;
-  /* Discord's button color for reference */
   transition: background-color 0.2s ease;
 }
 
 .login-modal button:hover {
   background-color: #4752C4;
-  /* Darker shade on hover */
 }
 
 .login-modal button:active {
   background-color: #3B44A9;
-  /* Even darker shade when clicked */
 }
 
 .login-modal button:nth-child(2) {
   background-color: #747F8D;
-  /* Guest button color */
 }
 
 .login-modal button:nth-child(2):hover {
@@ -366,4 +332,144 @@ button.copy-button {
 
 .login-modal button:nth-child(2):active {
   background-color: #454E58;
+}
+
+.loading-indicator {
+  color: #aaa;
+  font-style: italic;
+}
+
+@keyframes bounce {
+
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+}
+
+.typing-dots {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.typing-dots span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: white;
+  margin: 0 2px;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dots span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-dots span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.typing-dots span:nth-child(3) {
+  animation-delay: 0s;
+}
+
+.info-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  width: 90%;
+  margin-top: 10%;
+}
+
+.info-section {
+  display: flex;
+  flex-direction: row;
+}
+
+.info-column {
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 20px;
+  margin: 10px;
+  min-width: 200px;
+  flex: 1;
+}
+
+h1 {
+  margin-bottom: -10px;
+}
+
+h2 {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.info-column h2 {
+  border-bottom: 2px solid #454E58;
+  padding-bottom: 10px;
+}
+
+.info-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-column li {
+  height: 80px;
+  background-color: #454E58;
+  margin: 20px;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  font-size: 0.9em;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.open-prompt-button {
+  width: auto;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+
+.thread-button {
+  width: 345px;
+  height: 62px;
+  border: #303339 solid 1px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background: #1e1e1e;
+  color: white;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  transition: background-color 0.2s ease;
+  font-size: 0.9em;
+}
+
+.thread-button:hover {
+  background: #50555B;
+}
+
+.thread-button:active {
+  background: #60666B;
 }

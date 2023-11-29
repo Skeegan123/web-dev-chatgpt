@@ -4,7 +4,7 @@ import defaultProfilePic from '../../../public/user-icon.png';
 
 interface ProfileModalProps {
     username: string;
-    onLogout: () => void; // Function to handle logout
+    onLogout: () => void;
     onClose: () => void;
 }
 

@@ -3,33 +3,44 @@
 import OpenAI from "openai";
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
+/**
+ * Sends a message to an OpenAI assistant within a specific chat thread and retrieves the response.
+ * 
+ * @param {string} chatMessage - The message content to be sent.
+ * @param {string} user - The username of the user sending the message.
+ * @param {string} threadId - The ID of the chat thread.
+ * @param {boolean} newThread - Flag indicating if this is a new thread.
+ * @returns {Promise<{ response: string }>} An object containing the assistant's response.
+ */
 export async function sendMessageAction(chatMessage: string, user: string, threadId: string, newThread: boolean = false) {
     try {
-        // Check the status of the latest run and wait for it to complete if it's active
+        // Retrieve the latest run and its status
         const existingMessages = await openai.beta.threads.messages.list(threadId);
-        const latestRunId = existingMessages.data[0].run_id;
+        const latestRunId = existingMessages.data[0]?.run_id;
 
+        // If there's an active run, wait for its completion
         if (latestRunId) {
             let latestRunStatus = await openai.beta.threads.runs.retrieve(threadId, latestRunId);
             while (latestRunStatus.status !== "completed") {
-                await new Promise((resolve) => setTimeout(resolve, 100)); // Wait a bit before checking again
+                await new Promise((resolve) => setTimeout(resolve, 100)); // Polling delay
                 latestRunStatus = await openai.beta.threads.runs.retrieve(threadId, latestRunId);
             }
         }
 
+        // For existing threads, create a new message
         if (!newThread) {
-            // Create a new message
             await openai.beta.threads.messages.create(threadId, {
                 role: "user",
                 content: chatMessage,
             });
         }
 
-        // Create and wait for the new run to complete
+        // Start a new run for the assistant to process the message
         const run = await openai.beta.threads.runs.create(threadId, {
             assistant_id: process.env.OPENAI_ASSISTANT_ID || "",
         });
 
+        // Poll for the completion of the run
         let counter = 0;
         let success = false;
         let status = await openai.beta.threads.runs.retrieve(threadId, run.id);
@@ -38,17 +49,20 @@ export async function sendMessageAction(chatMessage: string, user: string, threa
             status = await openai.beta.threads.runs.retrieve(threadId, run.id);
             counter++;
 
+            // Mark success if the run is completed
             if (status.status === "completed") {
                 success = true;
             }
         }
 
+        // Throw an error if the run didn't complete successfully
         if (!success) {
             throw new Error('Error calling OpenAI API');
         }
 
+        // Retrieve and return the latest message, which is the assistant's response
         const messages: any = await openai.beta.threads.messages.list(threadId);
-        const answer = messages.data[0].content[0].text.value;
+        const answer = messages.data[0]?.content[0]?.text?.value;
 
         return { response: answer };
     } catch (error) {
@@ -56,55 +70,3 @@ export async function sendMessageAction(chatMessage: string, user: string, threa
         throw error;
     }
 }
-
-
-// 'use server';
-
-// import OpenAI from "openai";
-// import { fetchChatHistory } from '@/app/actions/fetchChatHistory';
-// const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-// export async function sendMessageAction(chatMessage: string, user: string, threadId: string) {
-//     try {
-//         fetchChatHistory(threadId)
-//             .then(async fetchedMessages => {
-//                 if (fetchedMessages[0].role !== 'user') {
-//                     openai.beta.threads.messages.create(threadId, {
-//                         role: "user",
-//                         content: chatMessage,
-//                     });
-//                 }
-//             });
-
-//         const run = await openai.beta.threads.runs.create(threadId, {
-//             assistant_id: process.env.OPENAI_ASSISTANT_ID || "",
-//         });
-
-//         let status = await openai.beta.threads.runs.retrieve(threadId, run.id);
-
-//         let counter = 0;
-//         let success = false;
-
-//         while (status.status !== "completed" && counter < 3000) {
-//             await new Promise((resolve) => setTimeout(resolve, 100));
-//             status = await openai.beta.threads.runs.retrieve(threadId, run.id);
-//             counter++;
-
-//             if (status.status === "completed") {
-//                 success = true;
-//             }
-//         }
-
-//         if (!success) {
-//             throw new Error('Error calling OpenAI API');
-//         }
-
-//         const messages: any = await openai.beta.threads.messages.list(threadId);
-//         const answer = messages.data[0].content[0].text.value;
-
-//         return { response: answer };
-//     } catch (error) {
-//         console.error('Error in sendMessageAction:', error);
-//         throw error;
-//     }
-// }
