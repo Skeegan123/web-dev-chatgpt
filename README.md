@@ -1,15 +1,35 @@
-# DanGPT - A ChatGPT UI Clone with a Twist
+# DanGPT - A ChatGPT Clone with a Twist
 
-Welcome to DanGPT's README! This isn't just your ordinary ChatGPT clone – we've jazzed it up with the teaching spirit and positive energy of our beloved professor, Daniel DeFrance. Built with NextJS 14, TypeScript, and a smattering of enthusiasm, DanGPT showcases the versatility and power of the OpenAI ChatGPT API in an interactive and engaging application.
+## Introduction
+
+
+### Group Information
+- **Group Number:** 32?
+- **Members:** Keegan Gaffney, Seth Ullman
 
 ## Features
+- **ChatGPT Assistant API**: Using the ChatGPT API to make up main functionality of our chatbot.
+- **Simple Authentication**: Easy login for seamless interaction.
+- **Thread History**: Keeps track of conversations for continuous learning.
+- **Guest Account**: For quick and hassle-free access.
+- **Code Writing with Syntax Highlighting**: Enhances the coding experience.
+- **Markdown Support**: For well-formatted messages.
+- **Code Interpreter**: Execute Python code snippets within the chat.
 
-- **Simple Authentication**: Log in and start conversing with ease!
-- **Thread History**: Keep your conversations at hand because learning is an ongoing dialogue.
-- **Guest Account**: Just popping by? No problem. Give DanGPT a whirl as a guest!
-- **Code Writing with Syntax Highlighting**: Code away with beautiful syntax highlighting.
-- **Markdown Support**: Format your messages, just like in your favorite forums!
-- **Code Interpreter**: Got Python? Execute code snippets right in the chat.
+## Links
+- **Project URL's**:
+  - http://csci331.cs.montana.edu:3032/
+  - Seth's URL
+- **GitHub Repositories**:
+   - https://github.com/Skeegan123/web-dev-chatgpt/
+   - Seth's URL
+- **Presentation Slideshow**: https://docs.google.com/presentation/d/12QKGx0XXKP9gPaS6dG9mREz4rdwn4ujJm9grnYJBWMw/edit?usp=sharing
+
+## Creative Objective
+
+
+## Technical Summary
+
 
 ## Getting Started
 
@@ -63,16 +83,18 @@ Ensure you have `node` and `npm` installed on your machine.
 
 Once you're all set up, you can start interacting with DanGPT. Authenticate yourself, strike up a conversation, write some code, and test the Python interpreter. It's all built to make learning web technologies a blast!
 
-## Support
+## Individual Contributions
+### [Keegan Gaffney](https://github.com/Skeegan123):
 
-This is a school project, designed for demonstration and learning. If you encounter issues or have questions, feel free to reach out.
+  
+### [Seth Ullman](https://github.com/SethUllman):
+  
+
+## Conclusion
+
 
 ## Acknowledgments
 
-- Professor Daniel DeFrance, for the inspiration and providing the educational foundation for this project.
-- OpenAI, for creating the powerful language models that made this project possible.
-- DanGPT for writing its own README
 
----
+## References
 
-Happy coding, and remember — stay curious, and keep learning!
