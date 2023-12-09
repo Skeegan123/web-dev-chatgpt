@@ -30,6 +30,8 @@ Our creative objective for DanGPT is to reimagine the conventional chatbot exper
 
 ## Technical Summary
 
+We used the Threads API with a MySQL database to store and retrieve previous conversations per user. Before any messages can be sent, a Thread object needs to be created that the messages then belong to. Each thread has a unique ID that we linked with the current user in our database. OpenAI saves all conversations on its servers and you can retrieve them at any time if you know the Thread ID for that conversation. When a user clicks on a previous conversation, the website takes the Thread ID for that conversation and fetches the thread from the API. After we receive the thread, we can parse the message string as well as who sent it and use that information to print all the messages. Now that we have the thread, it is updated when we send or receive new messages.
+
 ## Member Notes
 
 **Keegan:**
