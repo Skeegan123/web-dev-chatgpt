@@ -4,11 +4,11 @@
 
 
 ### Group Information
-- **Group Number:** 32?
+- **Group Number:** 11
 - **Members:** Keegan Gaffney, Seth Ullman
 
 ## Features
-- **ChatGPT Assistant API**: Using the ChatGPT API to make up main functionality of our chatbot.
+- **ChatGPT Assistant API**: Using the ChatGPT API to make up the main functionality of our chatbot.
 - **Simple Authentication**: Easy login for seamless interaction.
 - **Thread History**: Keeps track of conversations for continuous learning.
 - **Guest Account**: For quick and hassle-free access.
@@ -19,16 +19,23 @@
 ## Links
 - **Project URL's**:
   - http://csci331.cs.montana.edu:3032/
-  - Seth's URL
+  - http://csci331.cs.montana.edu:3063/
 - **GitHub Repositories**:
    - https://github.com/Skeegan123/web-dev-chatgpt/
-   - Seth's URL
+   - https://github.com/SethUllman/web-dev-chatgpt/
 - **Presentation Slideshow**: https://docs.google.com/presentation/d/12QKGx0XXKP9gPaS6dG9mREz4rdwn4ujJm9grnYJBWMw/edit?usp=sharing
 
 ## Creative Objective
-
+Our creative objective for DanGPT is to reimagine the conventional chatbot experience by infusing it with the vibrant personality and teaching style of Daniel DeFrance, a dynamic Web Development professor. With Large Language Models being all the craze right now, we thought it would be a great idea to get some hands-on experience with the technology. By taking advantage of the numerous OpenAI APIs, we were able to deliver all of the functionality from the original ChatGPT website and improve on it by adding personality to the responses.
 
 ## Technical Summary
+
+## Member Notes
+
+**Keegan:**
+
+**Seth:**
+I focused on the front end of the project. Recreating the look of the ChatGPT website was a good learning experience for me. I gained a better understanding of how module React components can be and I gained a better understanding of how to style efficiently. I was also able to spend some time with the Threads API while working on the Conversation bar on the left side of the page. Users have all of their Thread_id's stored in a MySQL database. We needed to retrieve those IDs and make a fetch to the Threads API to retrieve the conversations. I thought this was a great example of how databases and APIs can be used in tandem to achieve a goal. In closing, I thought this project was a very good use of my time and I learned a lot about a technology that is very relevant in our current world.
 
 
 ## Getting Started
