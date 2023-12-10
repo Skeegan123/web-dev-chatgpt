@@ -1,7 +1,7 @@
 # DanGPT - A ChatGPT Clone with a Twist
 
 ## Introduction
-
+DanGPT is a clone of the website we all know and love, ChatGPT. DanGPT was meant to have a very similar visual aesthetic to ChatGPT while having a special twist. This twist is that it was meant to act and respond as if it were our professor, Daniel Dafrance. To accomplish this, we used the ChatGPT API as well as NextJS and Typescript. We are very proud of what we were able to accomplish in such a short time frame, and we hope that you enjoy using it as well.
 
 ### Group Information
 - **Group Number:** 11
@@ -21,9 +21,10 @@
   - http://csci331.cs.montana.edu:3032/
   - http://csci331.cs.montana.edu:3063/
 - **GitHub Repositories**:
-   - https://github.com/Skeegan123/web-dev-chatgpt/
-   - https://github.com/SethUllman/web-dev-chatgpt/
-- **Presentation Slideshow**: https://docs.google.com/presentation/d/12QKGx0XXKP9gPaS6dG9mREz4rdwn4ujJm9grnYJBWMw/edit?usp=sharing
+  - https://github.com/Skeegan123/web-dev-chatgpt/
+  - https://github.com/SethUllman/web-dev-chatgpt/
+- **Presentation Slideshow**:
+  - https://docs.google.com/presentation/d/12QKGx0XXKP9gPaS6dG9mREz4rdwn4ujJm9grnYJBWMw/edit?usp=sharing
 
 ## Creative Objective
 Our creative objective for DanGPT is to reimagine the conventional chatbot experience by infusing it with the vibrant personality and teaching style of Daniel DeFrance, a dynamic Web Development professor. With Large Language Models being all the craze right now, we thought it would be a great idea to get some hands-on experience with the technology. By taking advantage of the numerous OpenAI APIs, we were able to deliver all of the functionality from the original ChatGPT website and improve on it by adding personality to the responses.
@@ -35,6 +36,7 @@ We used the Threads API with a MySQL database to store and retrieve previous con
 ## Member Notes
 
 **Keegan:**
+My main focus was on the backend for this project. I set up the database as well as the server actions needed to use the ChatGPT API. This was my first time using server actions and it was a very interesting concept. The MySQL database was also fairly new to me. It wasnt the first time I have used one, but it was definitely the most involved use of it. I had a lot of problems trying to set up this database at first, but once we got past that, it was not too bad. The ChatGPT API was something I did have some experience in, but again, not to this extent. This was a very involved project between the message creation and retrieval, as well as the threads api and being able to store and load conversations. Again, while this project was very challenging, we are very happy with it, and hope we can imporve it in the future.
 
 **Seth:**
 I focused on the front end of the project. Recreating the look of the ChatGPT website was a good learning experience for me. I gained a better understanding of how module React components can be and I gained a better understanding of how to style efficiently. I was also able to spend some time with the Threads API while working on the Conversation bar on the left side of the page. Users have all of their Thread_id's stored in a MySQL database. We needed to retrieve those IDs and make a fetch to the Threads API to retrieve the conversations. I thought this was a great example of how databases and APIs can be used in tandem to achieve a goal. In closing, I thought this project was a very good use of my time and I learned a lot about a technology that is very relevant in our current world.
@@ -92,18 +94,17 @@ Ensure you have `node` and `npm` installed on your machine.
 
 Once you're all set up, you can start interacting with DanGPT. Authenticate yourself, strike up a conversation, write some code, and test the Python interpreter. It's all built to make learning web technologies a blast!
 
-## Individual Contributions
-### [Keegan Gaffney](https://github.com/Skeegan123):
-
-  
-### [Seth Ullman](https://github.com/SethUllman):
-  
-
 ## Conclusion
-
+Overall we are very happy with the current state of DanGPT. On top of the main feature we were trying to showcase (the ChatGPT API), we were also able to finish some extra features we wanted like basic authentication, and syntax highlighting in code blocks. If we decide to keep building on this then we have a great foundation to work on and know that there is always room for us to improve. We hope everyone likes and is able to try out DanGPT for themselves! Thank you!
 
 ## Acknowledgments
-
+- Daniel Defrance for the inspiration for our chatbot
+- OpenAI for the great API and documentation
+- ChatGPT for help with some bugs
 
 ## References
+“Docs | Next.js.” Nextjs.org, 2023, nextjs.org/docs. Accessed 10 Dec. 2023.
 
+‌“Getting Started – React.” Reactjs.org, 2021, legacy.reactjs.org/docs/getting-started.html. Accessed 10 Dec. 2023.
+
+‌“OpenAI Platform.” Openai.com, 2023, platform.openai.com/docs/overview. Accessed 10 Dec. 2023.
